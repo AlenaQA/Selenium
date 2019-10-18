@@ -2,14 +2,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-<<<<<<< HEAD
 import java.util.List;
-=======
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
->>>>>>> origin/master
 
 public class Table {
     private WebElement tableElement;
@@ -21,17 +18,14 @@ public class Table {
     }
 
     public List<WebElement> getRows() {
-<<<<<<< HEAD
-        List<WebElement> rows = driver.findElements(By.xpath("//table[@id='customers']//tr"));
-=======
-        List<WebElement> rows = tableElement.findElements(By.xpath("//table[@id='customers']//tr"));
+        List<WebElement> rows = tableElement.findElements(By.xpath(".//tr"));
         rows.remove(0);
         return rows;
     }
 
     public List<WebElement> getHeadings() {
-        WebElement headingRow = tableElement.findElement(By.xpath("//table[@id='customers']//tr[1]"));
-        List<WebElement> headingColumns = headingRow.findElements(By.xpath("/th"));
+        WebElement headingRow = tableElement.findElement(By.xpath(".//tr[1]"));
+        List<WebElement> headingColumns = headingRow.findElements(By.xpath(".//th"));
         return headingColumns;
     }
 
@@ -39,7 +33,7 @@ public class Table {
         List<WebElement> rows = getRows();
         List<List<WebElement>> rowsWithColumns = new ArrayList<List<WebElement>>();
         for (WebElement row : rows) {
-            List<WebElement> rowWithColumn = row.findElements(By.xpath("//td"));
+            List<WebElement> rowWithColumn = row.findElements(By.xpath(".//td"));
             rowsWithColumns.add(rowWithColumn);
         }
         return rowsWithColumns;
@@ -73,6 +67,5 @@ public class Table {
     public String getValueFromCell(int rowNumber, String columnName) {
         List<Map<String, WebElement>> rowsWithColumnsByHeading = getRowsWithColumnsByHeading();
         return rowsWithColumnsByHeading.get(rowNumber - 1).get(columnName).getText();
->>>>>>> origin/master
     }
 }
